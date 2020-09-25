@@ -24,7 +24,7 @@ import Dishdetail from "./DishdetailComponent";
 import { Icon } from "react-native-elements";
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
-
+import Reservation from './ReservationComponent';
 const mapStateToProps = state => {
   return {
     dishes: state.dishes,
@@ -177,6 +177,29 @@ function AboutNavigatorScreen() {
     </MainNavigatorStack.Navigator>
   );
 }
+function ReservationNavigatorScreen() {
+  return (
+    <MainNavigatorStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#512DA8",
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          color: "#fff",
+        },
+      }}
+    >
+      <MainNavigatorStack.Screen
+        name="Reservation"
+        component={Reservation}
+        options={({ navigation }) => ({
+          headerLeft: () => <MenuIcon navigation={navigation} />,
+        })}
+      />
+    </MainNavigatorStack.Navigator>
+  );
+}
 function MainNavigator() {
   return (
     <Drawer.Navigator
@@ -191,6 +214,18 @@ function MainNavigator() {
         options={{
           drawerIcon: ({ tintColor }) => (
             <Icon name="home" type="font-awesome" size={24} color={tintColor} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Reservation"
+        component={ReservationNavigatorScreen}
+        options={{
+          drawerIcon: ({ tintColor }) => (
+            <Icon   name='cutlery'
+            type='font-awesome'            
+            size={24}
+            iconStyle={{ color: tintColor }} />
           ),
         }}
       />
